@@ -1,0 +1,10 @@
+Anthony Ruffin
+Resilient Distributed Datasets
+DS610
+
+Resilient Distributed Datasets or RDD's were created to handle the inefficiencies that current algorithm and data mining software currently does not provide. This is done by keeping data in memory instead of writing to a disk which greatly increases memory.  
+RDD's is a collection of portioned records which is created through transformations. These are only computed when the first action is invoked. RDD's are able to be reused and are able to be defined how they are distributed across nodes. 
+New RDD's are referred to as lazy operations while an action will launch a computation that returns a value.
+RDD's are best represented as narrow dependencies where each parent by at most one partition or a wide dependencies where multiple child partitions may depend on it. Narrow dependencies will allow one node to compute all the related parent partitions. Wide dependencies need all related parent partitions to be available to each of the nodes. Fault recovery in narrow dependency is also improved by only needing to re-compute lost parent partitions which can be done on different nodes. That this common interface required less than 20 lines of code makes this a very useful tool. 
+Spark provides three options for RDD's, In-memory (de-serialized), In-memory (serialized) and On-disk storage. In-memory (de-serialized) is the faster option in interacts with Java natively. In-memory (serialized) is more memory efficient when space is an issue. On-disk storage is useful when the RDD's are too large keep in RAM but the cost to re-compute each time would be too costly. 
+The evaluation of Spark compared to Hadoop is what I found the most interesting. Spark outperformed Hadoop by up to 20 X faster and applications written by users by up to 40 X faster. Failing nodes were not a problem as these were quickly rebuilt and on partitions were lost. And the querying of a 1 TB dataset took between 5-7 seconds.  
